@@ -11,9 +11,9 @@ const initialTodos = [
 ];
 
 function App() {
+    const [todos, setTodos] = useState(initialTodos);
 
     const onCreateTodos = (task) => {
-
         const updatedTodos = [...todos];
         updatedTodos.push({id: Math.random(), name: task, done: false});
         setTodos(updatedTodos);
@@ -22,14 +22,24 @@ function App() {
         const updatedTodos = todos.filter(el => el.id !== id);
         setTodos(updatedTodos);
     }
+    const onTaskDoneToggle = (id) => {
+        const updatedTodos = todos.map(el => {
+            if(el.id === id) return { ...el, done: !el.done}
+            else return el;
+
+        })
+        setTodos(updatedTodos);
+    }
 
 
-    const [todos, setTodos] = useState(initialTodos)
 
     return (
         <div className="App">
             <TodoCreateForm onCreateTodos={onCreateTodos}/>
-            <TodoList todos={todos} onTaskDelete={onTaskDelete}/>
+            <TodoList
+                todos={todos}
+                onTaskDelete={onTaskDelete}
+                onTaskDoneToggle={onTaskDoneToggle}/>
         </div>
     );
 }
