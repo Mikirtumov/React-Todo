@@ -1,19 +1,17 @@
 import React, {useState} from 'react';
-import './App.css';
 
-function TodoCreateForm() {
+function TodoCreateForm(props) {
 
-    const [task, setTask] = useState('')
+    const [task, setTask] = useState()
 
-    const addTast = () => {
+    const addTask = () => {
         console.log(task)
     }
 
-
     return (
         <div>
-            <input type="text" value={task} onChange={e => setTask(e.target.value)}/>
-            <button onClick={addTast}>add</button>
+            <input type="text" value={task} onChange={(e) =>setTask(e.target.value)} />
+            <button onClick={addTask}>Add Task</button>
         </div>
     );
 }
