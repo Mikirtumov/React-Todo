@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import TodoCreateForm from "./TodoCreateForm";
 import TodoList from "./TodoList";
 
-const initialTodos =  [
+const initialTodos = [
     {id: 1, name: 'Test1', done: false},
     {id: 2, name: 'Test2', done: true},
     {id: 3, name: 'Test3', done: false}
@@ -12,11 +12,19 @@ const initialTodos =  [
 
 function App() {
 
+    const onCreateTodos = (task) => {
+        console.log('App ' + task);
+        const updatedTodos = [...todos];
+        updatedTodos.push({id: Math.random(), name: task, done: false});
+        setTodos(updatedTodos);
+    }
+
+
     const [todos, setTodos] = useState(initialTodos)
 
     return (
         <div className="App">
-            <TodoCreateForm/>
+            <TodoCreateForm onCreateTodos={onCreateTodos}/>
             <TodoList todos={todos}/>
         </div>
     );
