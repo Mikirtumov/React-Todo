@@ -13,9 +13,13 @@ const initialTodos = [
 function App() {
 
     const onCreateTodos = (task) => {
-        console.log('App ' + task);
+
         const updatedTodos = [...todos];
         updatedTodos.push({id: Math.random(), name: task, done: false});
+        setTodos(updatedTodos);
+    }
+    const onTaskDelete = (id) => {
+        const updatedTodos = todos.filter(el => el.id !== id);
         setTodos(updatedTodos);
     }
 
@@ -25,7 +29,7 @@ function App() {
     return (
         <div className="App">
             <TodoCreateForm onCreateTodos={onCreateTodos}/>
-            <TodoList todos={todos}/>
+            <TodoList todos={todos} onTaskDelete={onTaskDelete}/>
         </div>
     );
 }
