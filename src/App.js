@@ -30,6 +30,15 @@ function App() {
         })
         setTodos(updatedTodos);
     }
+    const onTaskSave = (task) => {
+        const updatedTodos = todos.map(el => {
+            if(el.id === task.id) return { ...el, name: task.name}
+            else return el;
+
+        })
+        setTodos(updatedTodos);
+    }
+
 
 
 
@@ -39,7 +48,8 @@ function App() {
             <TodoList
                 todos={todos}
                 onTaskDelete={onTaskDelete}
-                onTaskDoneToggle={onTaskDoneToggle}/>
+                onTaskDoneToggle={onTaskDoneToggle}
+                onTaskSave={onTaskSave}/>
         </div>
     );
 }
